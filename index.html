@@ -1,393 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🎮 Game Hub · Tic-Tac-Toe</title>
-  <style>
-    /* ----- global reset & fonts ----- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 A surprise for my sweetu babe 💖</title>
+    <style>
+        /* Love-filled romantic page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Poppins', 'Arial', sans-serif;
+        }
 
-    body {
-      min-height: 100vh;
-      background: radial-gradient(circle at 20% 20%, #1a2639, #0d1421);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-    }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #ffe6f0 0%, #ffc2d9 50%, #ffb3c6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-    /* ----- main card (glassmorphism) ----- */
-    .hub-card {
-      max-width: 780px;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-radius: 64px;
-      padding: 2.2rem 2.5rem 2.8rem;
-      box-shadow: 
-        0 30px 50px rgba(0, 0, 0, 0.7),
-        0 0 0 1px rgba(255, 255, 255, 0.06),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      transition: 0.25s ease;
-    }
+        /* floating hearts background */
+        .hearts-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-    /* ----- header with glow ----- */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.8rem 1.5rem;
-      margin-bottom: 2.2rem;
-    }
+        .heart-float {
+            position: absolute;
+            color: rgba(255, 80, 120, 0.25);
+            font-size: 2rem;
+            animation: floatHeart 12s infinite linear;
+            user-select: none;
+        }
 
-    .title-group {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(110vh) rotate(0deg) scale(0.8);
+                opacity: 0.2;
+            }
+            20% {
+                opacity: 0.6;
+            }
+            80% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-20vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
 
-    .title-group h1 {
-      font-weight: 600;
-      font-size: 2.2rem;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #f0efe7, #c8dbe8);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 4px 20px rgba(200, 220, 240, 0.15);
-    }
+        /* main love card */
+        .love-card {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 250, 250, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            max-width: 650px;
+            width: 100%;
+            padding: 3rem 2rem;
+            border-radius: 70px 30px 70px 30px;
+            box-shadow: 0 30px 50px rgba(230, 50, 100, 0.25),
+                        0 0 0 8px rgba(255, 255, 255, 0.6),
+                        0 0 0 12px rgba(255, 120, 160, 0.3);
+            text-align: center;
+            transition: all 0.3s ease;
+            animation: softPulse 3s infinite alternate;
+        }
 
-    .badge {
-      background: #2a4055;
-      padding: 0.2rem 1rem;
-      border-radius: 40px;
-      color: #bdd9ed;
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.3px;
-      border: 1px solid #4a6a84;
-      box-shadow: inset 0 1px 4px rgba(0,0,0,0.4);
-      white-space: nowrap;
-    }
+        @keyframes softPulse {
+            0% { transform: scale(1); box-shadow: 0 30px 50px rgba(230, 50, 100, 0.2), 0 0 0 8px rgba(255, 255, 255, 0.6), 0 0 0 12px rgba(255, 120, 160, 0.2); }
+            100% { transform: scale(1.01); box-shadow: 0 40px 60px rgba(230, 50, 100, 0.35), 0 0 0 10px rgba(255, 240, 245, 0.8), 0 0 0 16px rgba(255, 90, 140, 0.4); }
+        }
 
-    .status-pulse {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: #1a2c3b;
-      padding: 0.4rem 1.2rem 0.4rem 1rem;
-      border-radius: 60px;
-      border: 1px solid #3b5a72;
-    }
+        .love-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 45px 70px rgba(220, 40, 90, 0.4), 0 0 0 12px #fff0f5, 0 0 0 20px #ff99bb;
+        }
 
-    .pulse-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #6fcf97;
-      box-shadow: 0 0 12px #6fcf97;
-      animation: pulse-glow 1.8s infinite;
-    }
+        /* big cute heading */
+        h1 {
+            font-size: 3rem;
+            color: #b3003b;
+            text-shadow: 3px 3px 0 #ffb3c6, 6px 6px 0 rgba(255, 150, 180, 0.4);
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            font-weight: 800;
+            word-break: break-word;
+        }
 
-    .status-pulse span {
-      color: #d0e2f0;
-      font-size: 0.95rem;
-      font-weight: 400;
-    }
+        h1 span {
+            display: inline-block;
+            animation: bounceLetter 1.5s infinite alternate;
+        }
 
-    @keyframes pulse-glow {
-      0% { opacity: 0.6; transform: scale(0.95); }
-      50% { opacity: 1; transform: scale(1.2); }
-      100% { opacity: 0.6; transform: scale(0.95); }
-    }
+        @keyframes bounceLetter {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-8px); }
+        }
 
-    /* ----- featured game: tic-tac-toe (big card) ----- */
-    .featured-game {
-      background: linear-gradient(145deg, #1e3142, #14212e);
-      border-radius: 48px;
-      padding: 1.6rem 2rem 2rem;
-      margin-bottom: 2.8rem;
-      border: 1px solid #3a5670;
-      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.04);
-      transition: 0.2s;
-    }
+        .sub-message {
+            font-size: 1.4rem;
+            color: #a13156;
+            margin-bottom: 2rem;
+            font-style: italic;
+            font-weight: 500;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
 
-    .featured-game:hover {
-      border-color: #5a7f9c;
-      box-shadow: 0 18px 30px rgba(0, 0, 0, 0.7);
-    }
+        .sub-message .emoji-big {
+            font-size: 2rem;
+            display: inline-block;
+            animation: wiggle 2s infinite;
+        }
 
-    .featured-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-bottom: 1.4rem;
-    }
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-10deg); }
+        }
 
-    .featured-header h2 {
-      font-size: 1.9rem;
-      font-weight: 500;
-      color: #eef3f0;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+        /* the star of the show: PDF open link styled as a lovely button */
+        .pdf-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff3b6f, #ff6b9d);
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 1.2rem 3.5rem;
+            border-radius: 60px;
+            text-decoration: none;
+            box-shadow: 0 15px 0 #a1003a, 0 20px 30px rgba(200, 0, 70, 0.4);
+            transition: all 0.15s ease;
+            margin: 25px 0 15px 0;
+            letter-spacing: 2px;
+            border: 3px solid #fff0f5;
+            position: relative;
+            cursor: pointer;
+            text-transform: uppercase;
+            animation: glow 2s infinite alternate;
+        }
 
-    .featured-header h2 small {
-      font-size: 0.9rem;
-      background: #2d4a5e;
-      padding: 0.1rem 1rem;
-      border-radius: 40px;
-      font-weight: 400;
-      color: #c4d9e8;
-    }
+        .pdf-button:hover {
+            background: linear-gradient(135deg, #ff1f5a, #ff4d8f);
+            transform: translateY(5px);
+            box-shadow: 0 10px 0 #a1003a, 0 25px 35px rgba(200, 0, 70, 0.5);
+        }
 
-    .play-btn {
-      background: #3d6b5e;
-      border: none;
-      color: white;
-      font-size: 1.2rem;
-      font-weight: 500;
-      padding: 0.7rem 2rem;
-      border-radius: 60px;
-      cursor: pointer;
-      box-shadow: 0 8px 0 #1d3a30, 0 6px 16px rgba(0,0,0,0.5);
-      transition: 0.08s linear;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      border: 1px solid #5f9b86;
-      letter-spacing: 0.3px;
-    }
+        .pdf-button:active {
+            transform: translateY(12px);
+            box-shadow: 0 5px 0 #a1003a, 0 20px 30px rgba(200, 0, 70, 0.4);
+        }
 
-    .play-btn:active {
-      transform: translateY(6px);
-      box-shadow: 0 2px 0 #1d3a30;
-    }
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #fff, 0 0 10px #ffb6c1; }
+            to { text-shadow: 0 0 15px #fff, 0 0 30px #ff99bb, 0 0 40px #ff4d6d; }
+        }
 
-    .play-btn i {
-      font-size: 1.4rem;
-      line-height: 1;
-    }
+        .pdf-button::before {
+            content: "📄";
+            margin-right: 15px;
+            font-size: 2rem;
+            filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.1));
+        }
 
-    .featured-desc {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1.5rem 2.5rem;
-      color: #b6cedf;
-      font-size: 0.98rem;
-      border-top: 1px solid #345067;
-      padding-top: 1.2rem;
-      margin-top: 0.2rem;
-    }
+        .pdf-button::after {
+            content: "❤️";
+            margin-left: 15px;
+            font-size: 2rem;
+            animation: heartBeat 1s infinite;
+        }
 
-    .featured-desc .tag {
-      background: #1b3140;
-      padding: 0.2rem 1.2rem;
-      border-radius: 40px;
-      color: #d3e3ef;
-      border: 1px solid #486580;
-    }
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.25); }
+        }
 
-    .featured-desc .code-hint {
-      background: #0d1c28;
-      padding: 0.2rem 1.2rem;
-      border-radius: 40px;
-      font-family: 'Courier New', monospace;
-      color: #f7e9b0;
-      letter-spacing: 2px;
-      border: 1px solid #6a8fa8;
-    }
+        .love-note {
+            font-size: 1.2rem;
+            color: #b3446c;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 2px dashed #ffb0c8;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-weight: 500;
+        }
 
-    /* ----- game grid (for future games) ----- */
-    .game-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 1rem;
-      margin-top: 0.5rem;
-    }
+        .love-note .small {
+            font-size: 1rem;
+            opacity: 0.85;
+        }
 
-    .game-card-placeholder {
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 30px;
-      padding: 1.2rem 0.6rem;
-      text-align: center;
-      border: 1px dashed #3d5770;
-      color: #7f9bb3;
-      transition: 0.15s;
-      backdrop-filter: blur(2px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-    }
+        .signature {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 2.2rem;
+            color: #c72c5e;
+            margin-top: 5px;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 0 #ffe0e8;
+        }
 
-    .game-card-placeholder .icon {
-      font-size: 2.4rem;
-      opacity: 0.6;
-    }
+        /* surprise sparkles */
+        .sparkle {
+            position: absolute;
+            font-size: 1.8rem;
+            animation: twinkle 3s infinite;
+            pointer-events: none;
+            opacity: 0.7;
+        }
 
-    .game-card-placeholder .name {
-      font-weight: 400;
-      font-size: 0.95rem;
-      letter-spacing: 0.3px;
-    }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
 
-    .game-card-placeholder .coming {
-      background: #1f3345;
-      padding: 0.1rem 0.8rem;
-      border-radius: 40px;
-      font-size: 0.7rem;
-      color: #8aadc7;
-      border: 1px solid #375367;
-    }
+        /* responsiveness */
+        @media (max-width: 600px) {
+            .love-card {
+                padding: 2rem 1.2rem;
+                border-radius: 45px 20px 45px 20px;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            .pdf-button {
+                font-size: 1.4rem;
+                padding: 1rem 1.8rem;
+                letter-spacing: 1px;
+            }
+            .pdf-button::before,
+            .pdf-button::after {
+                font-size: 1.4rem;
+                margin-right: 8px;
+                margin-left: 8px;
+            }
+            .sub-message {
+                font-size: 1.1rem;
+            }
+            .signature {
+                font-size: 1.8rem;
+            }
+        }
 
-    .game-card-placeholder:hover {
-      border-color: #6a8ca8;
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    /* ----- footer / bottom note ----- */
-    .footer-note {
-      margin-top: 2.5rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #68849e;
-      border-top: 1px solid #274058;
-      padding-top: 1.4rem;
-      letter-spacing: 0.4px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem 2rem;
-    }
-
-    .footer-note span {
-      background: #1a2d3d;
-      padding: 0.1rem 1.2rem;
-      border-radius: 40px;
-      border: 1px solid #3b5a72;
-    }
-
-    /* ----- responsive fine-tune ----- */
-    @media (max-width: 550px) {
-      .hub-card { padding: 1.5rem; }
-      .title-group h1 { font-size: 1.7rem; }
-      .featured-game { padding: 1.2rem; }
-      .featured-header h2 { font-size: 1.5rem; }
-      .play-btn { font-size: 1rem; padding: 0.6rem 1.2rem; }
-      .game-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 400px) {
-      .game-grid { grid-template-columns: 1fr; }
-    }
-
-    /* pseudo icon for play (no external icons) */
-    .icon-play::before {
-      content: "▶";
-      font-size: 1.2rem;
-      margin-right: 4px;
-    }
-  </style>
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .pdf-button {
+                font-size: 1.2rem;
+                padding: 0.9rem 1.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="hub-card">
-    <!-- header -->
-    <div class="header">
-      <div class="title-group">
-        <h1>🎮 Game Hub</h1>
-        <span class="badge">v0.1</span>
-      </div>
-      <div class="status-pulse">
-        <span class="pulse-dot"></span>
-        <span>online · ready</span>
-      </div>
-    </div>
+    <!-- floating hearts background -->
+    <div class="hearts-bg" id="heartsBg"></div>
 
-    <!-- FEATURED: Tic-Tac-Toe (your first game) -->
-    <div class="featured-game">
-      <div class="featured-header">
-        <h2>
-          ❌ Tic-Tac-Toe
-          <small>secret code</small>
-        </h2>
-        <!-- play button links to tictoe.html (same folder) -->
-        <a href="tictoe.html" style="text-decoration: none;">
-          <button class="play-btn">
-            <span class="icon-play"></span> Play now
-          </button>
+    <!-- sparkle emojis (fixed position) -->
+    <div class="sparkle" style="top: 8%; left: 5%; animation-delay: 0s;">✨</div>
+    <div class="sparkle" style="top: 18%; right: 8%; animation-delay: 0.7s;">💖</div>
+    <div class="sparkle" style="bottom: 12%; left: 12%; animation-delay: 1.2s;">🌸</div>
+    <div class="sparkle" style="bottom: 20%; right: 15%; animation-delay: 0.3s;">⭐</div>
+    <div class="sparkle" style="top: 45%; left: 3%; animation-delay: 1.8s;">💕</div>
+    <div class="sparkle" style="top: 70%; right: 5%; animation-delay: 0.9s;">✨</div>
+
+    <!-- main romantic card -->
+    <div class="love-card">
+        <h1>
+            <span>H</span><span>e</span><span>y</span>
+            <span> </span>
+            <span>S</span><span>w</span><span>e</span><span>e</span><span>t</span><span>u</span>
+            <span> </span>
+            <span>B</span><span>a</span><span>b</span><span>e</span>
+            <span>!</span>
+        </h1>
+
+        <div class="sub-message">
+            <span class="emoji-big">💌</span> I made something just for you <span class="emoji-big">💌</span>
+        </div>
+
+        <!-- THE PDF OPEN LINK — clicking opens surprise.pdf -->
+        <a href="surprise.pdf" class="pdf-button" target="_blank" rel="noopener noreferrer">
+            OPEN PDF
         </a>
-      </div>
 
-      <div class="featured-desc">
-        <span class="tag">👥 2 players</span>
-        <span class="tag">🔐 room code</span>
-        <span class="code-hint">⚡ share &amp; join</span>
-        <span style="margin-left: auto; opacity: 0.7;">⭐ first game</span>
-      </div>
+        <div class="love-note">
+            <div>💝 Click the button above, my love 💝</div>
+            <div class="small">a little surprise is waiting inside...</div>
+            <div class="signature">— Forever yours ❤️</div>
+        </div>
     </div>
 
-    <!-- OTHER GAMES (placeholders – you can add more later) -->
-    <div style="margin-bottom: 0.8rem; display: flex; justify-content: space-between; align-items: center;">
-      <span style="color: #b0ccdf; font-weight: 400; letter-spacing: 0.3px;">📂 more games (coming soon)</span>
-      <span style="color: #4a6f8a; font-size: 0.8rem;">+ add yours</span>
-    </div>
+    <script>
+        // generate floating hearts dynamically for a magical feel
+        (function createFloatingHearts() {
+            const heartsContainer = document.getElementById('heartsBg');
+            const heartSymbols = ['❤️', '💖', '💗', '💓', '💕', '💘', '💝', '🌸', '✨', '💐'];
+            const numberOfHearts = 30;
 
-    <div class="game-grid">
-      <!-- placeholder 1 -->
-      <div class="game-card-placeholder">
-        <div class="icon">🃏</div>
-        <div class="name">Card match</div>
-        <div class="coming">soon</div>
-      </div>
-      <!-- placeholder 2 -->
-      <div class="game-card-placeholder">
-        <div class="icon">🧩</div>
-        <div class="name">Puzzle</div>
-        <div class="coming">soon</div>
-      </div>
-      <!-- placeholder 3 -->
-      <div class="game-card-placeholder">
-        <div class="icon">🎯</div>
-        <div class="name">Darts</div>
-        <div class="coming">soon</div>
-      </div>
-      <!-- placeholder 4 -->
-      <div class="game-card-placeholder">
-        <div class="icon">🎲</div>
-        <div class="name">Dice duel</div>
-        <div class="coming">soon</div>
-      </div>
-    </div>
+            for (let i = 0; i < numberOfHearts; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-float');
+                // random heart symbol
+                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                // random size between 1.2rem and 3rem
+                const size = Math.random() * 1.8 + 1.2;
+                heart.style.fontSize = size + 'rem';
+                // random horizontal position
+                heart.style.left = Math.random() * 100 + '%';
+                // random animation duration between 8s and 18s
+                heart.style.animationDuration = (Math.random() * 10 + 8) + 's';
+                // random animation delay (negative so they start at different points)
+                heart.style.animationDelay = (Math.random() * -18) + 's';
+                // random opacity baseline (overridden by keyframes, but good)
+                heart.style.opacity = Math.random() * 0.5 + 0.2;
+                // set a random rotation direction via custom property? not needed
+                heartsContainer.appendChild(heart);
+            }
+        })();
 
-    <!-- footer -->
-    <div class="footer-note">
-      <span>✦ tictoe.html · 1st game</span>
-      <span>⬤ rest games you will enter</span>
-      <span>🔗 share this hub</span>
-    </div>
-  </div>
-
-  <script>
-    // optional: small console reminder
-    (function() {
-      console.log('🎮 Game Hub · Tic-Tac-Toe is ready!');
-      console.log('📁 Add your own games by editing the game-grid section.');
-      // you can add any future dynamic behavior here
-    })();
-  </script>
+        // Add a tiny extra surprise: a soft click sound? No, just visual.
+        // But we'll make the button give a little extra love via console (just for fun)
+        console.log("%c💖 Surprise for my sweetu babe! Click the big button! 💖", "font-size: 16px; color: #b3003b; font-weight: bold;");
+    </script>
 </body>
 </html>
